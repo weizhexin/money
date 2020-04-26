@@ -1,6 +1,8 @@
 <template>
-  <div>Labels.vue
-      <Nav/>
+  <div>
+      <Layout>
+          <p> 222</p>
+         </Layout>
   </div>
 </template>
 
