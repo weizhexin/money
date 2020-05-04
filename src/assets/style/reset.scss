@@ -7,3 +7,12 @@
     text-decoration: none;
     color:gray;
   }
+  ul, ol{
+      list-style: none;
+  }
+  button, input{
+      font:inherit;
+  }
+  :focus{
+      outline: none;
+  }

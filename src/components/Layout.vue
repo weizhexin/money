@@ -1,7 +1,7 @@
 <template>
-   <div class = "nav-wrapper">
-      <div class="content"> 
-         <slot></slot>
+   <div class = "lavout-wrapper">
+      <div class="content" :class="classPrefix && `${classPrefix}-content` "> 
+         <slot />
       </div>
        <Nav/>
    </div>
@@ -9,13 +9,15 @@
 </template>
 
 <script>
+//import content from '*.svg'
     export default {
+        props:['classPrefix'],
         name:"Layout"
     }
 </script>
 
 <style lang="scss" scoped>
-  .nav-wrapper{
+  .lavout-wrapper{
         display: flex;
        
         flex-direction: column;
