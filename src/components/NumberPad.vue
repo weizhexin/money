@@ -62,7 +62,7 @@
              this.output = '0'
           }
           ok(){
-            this.output
+            this.$emit('update:value',this.output);
           }
         } 
 </script>
