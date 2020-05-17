@@ -1,11 +1,10 @@
 <template>
   <div>
     <Layout class-prefix="layout">
-        <NumberPad :value="record.amount" @update:value = "onUpdateAmount" @submit="saveRecord"/>
+        <NumberPad :value="record.amount" @update:value = "onUpdateAmount" @submit="saveRecordTtem"/>
         <Types :value.sync="record.type" />
         <Notes @update:value = "onUpdateNotes"/>
         <Tags :data-source.sync="tags" @update:value = "onUpdateTags" />
-      {{recordList}}
     </Layout>
   </div>
 </template>
@@ -16,23 +15,20 @@ import NumberPad from '@/components/NumberPad.vue';
 import Types from '@/components/Types.vue';
 import Notes from '@/components/Notes.vue';
 import Tags from '@/components/Tags.vue';
-
 import {Component, Watch} from 'vue-property-decorator';
+import recordListModel from '@/models/recordListModels';
+import tagListModel from '@/models/tagListModel';
 
-type Record = {
-  tags: string[];
-  notes: string;
-  type: string;
-  amount: number;
-  createAt?: Date;   //表示可以不存在
-}
+const recordList = recordListModel.fetch();
+const tagList = tagListModel.fetch();
+
 @Component({
   components:{Tags,Notes, Types, NumberPad}
 })
 export default class Money extends Vue {
-        tags = ['衣','食','住','行'];
-        recordList: Record[]= JSON.parse( window.localStorage.getItem('recordList') || '[]')
-        record: Record = {
+        tags = tagList;
+        recordList: RecordItem[]= JSON.parse( window.localStorage.getItem('recordList') || '[]')
+        record: RecordItem = {
           tags:[], notes:'', type:'-', amount:0
         }
         onUpdateTags(value: string[]) {
@@ -45,13 +41,13 @@ export default class Money extends Vue {
         onUpdateAmount(value: string){
           this.record.amount = parseFloat(value) 
         }
-        saveRecord(){
-          const record2: Record = JSON.parse( JSON.stringify(this.record));
-          record2.createAt = new Date();
+        saveRecordTtem(){
+          const record2: RecordItem = JSON.parse( JSON.stringify(this.record));
+          record2.createdAt = new Date();
           this.recordList.push(record2);
         } 
         @Watch('recordList')
-        onRecordListChanged(){
+        onRecordTtemListChanged(){
           window.localStorage.setItem('recordList', JSON.stringify(this.recordList) )
         }
         
