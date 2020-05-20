@@ -1,10 +1,16 @@
 <template>
   <Layout>
-      <div>
-          <Icon name="left"/>
-          <span>编辑标签</span>
+      <div class="navBar">
+          <Icon class="leftIcon" name="left"/>
+          <span class="title">编辑标签</span>
+          <span class="right"></span>
       </div>
-        <Notes field-name="标签名" placeholder="清输入标签名"/>
+        <div class="form-wrapper">
+        <FormItem :value="tag.name " field-name="标签名" placeholder="清输入标签名"/>
+        </div>
+        <div class="button-wrapper">
+        <button class='createTag'>删除标签</button>
+        </div>
   </Layout>
 </template>
 
@@ -12,12 +18,13 @@
 import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
 import tagListModel from '../models/tagListModel';
-import Notes from '@/components/Notes.vue';
+import FormItem from '@/components/FormItem.vue';
 
 @Component({
-    components:{Notes}
+    components:{FormItem}
 })
 export default class EditLabel extends Vue{
+    tag?: { id: string; name: string} = undefined;
     created(){
     //    console.log(this.$route.params) 
         const id = this.$route.params.id;
@@ -25,7 +32,7 @@ export default class EditLabel extends Vue{
         const tags = tagListModel.data;
         const tag = tags.filter(t=>t.id === id)[0];
         if(tag){
-            console.log(tag);
+            this.tag = tag;
         }else{
             this.$router.replace('/404');
         }
@@ -34,5 +41,45 @@ export default class EditLabel extends Vue{
 </script>
 
 <style lang="scss" scoped>
-
+    .navBar{
+        text-align: center;
+        font-size: 16px;
+        padding: 12px 16px;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        >.title{
+            border: 1px solid red;
+        }
+        >.leftIcon{
+           border:1px solid black;
+           width:24px;
+           height:24px;
+        }
+        >.right{
+             border:1px solid red;
+           width:24px;
+           height:24px;
+        }
+    }
+    .form-wrapper{
+        background: white;
+        margin-top:8px ;
+        
+        
+    }
+    .createTag{
+        background: #767676;
+        color:white;
+        border-radius:4px;
+        border:none;
+        height: 40px;
+        padding: 0 16px;
+    }
+    .button-wrapper{
+        text-align: center;
+        margin-top:44-16px;
+        padding:16px 0;
+    }
 </style>

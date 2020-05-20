@@ -11,7 +11,8 @@
             </router-link>
          </div>
          <div class="createTag-wrapper">
-             <button class="createTag" @click="createTag">新建标签</button>
+             <!-- <difButton class='createTag' @click="createTag">新建标签</difButton>            -->
+             <button  class='createTag' @click="createTag">新建标签</button>
          </div>
          </Layout>
   </div>
