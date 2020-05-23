@@ -18,13 +18,16 @@ type RecordItem = {
     create: (name: string) => 'success' | 'duplicated'; // success表示成功 duplicated表示name重复
   }
 
-  interface Window{
-    tagList: Tag[];
-    createTag: (name: string) => void;
-    removeTag: (id: string) => boolean;
-    updateTag: (id: string,name: string) => 'success' | 'NotFound' | 'duplicated';
-    findTag: (id: string) => Tag | undefined;
-    recordList: RecordItem[];
-    createRecord: (record: RecordItem) => void;
-  }
+  // interface Window{
+  //   store:{
+  //     tagList: Tag[];
+  //   createTag: (name: string) => void;
+  //   removeTag: (id: string) => boolean;
+  //   updateTag: (id: string,name: string) => 'success' | 'NotFound' | 'duplicated';
+  //   findTag: (id: string) => Tag | undefined;
+  //   recordList: RecordItem[];
+  //   createRecord: (record: RecordItem) => void;
+  //   }
+    
+  // }
   
