@@ -7,6 +7,7 @@ import Nav from '@/components/Nav.vue'
 import Layout from '@/components/Layout.vue'
 import Icon from '@/components/Icon.vue'
 import tagListModel from './models/tagListModel'
+import recordListModels from './models/recordListModels'
 
 Vue.config.productionTip = false
 
@@ -23,6 +24,14 @@ window.createTag = (name: string)=>{
       window.alert('添加标签成功')
   }
 };
+//record store
+window.recordList = recordListModels.fetch();
+window.createRecord = (record: RecordItem)=>{
+  return recordListModels.create(record);
+}
+
+
+//tag store
 window.removeTag = (id: string)=>{
     return tagListModel.remove(id);
 };

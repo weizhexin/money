@@ -27,6 +27,7 @@ import FormItem from '@/components/FormItem.vue';
     components:{FormItem}
 })
 export default class EditLabel extends Vue{
+    tag?: { id: string; name: string} = undefined;
     created(){
         this.tag =  window.findTag( this.$route.params.id);
         if(!this.tag){
