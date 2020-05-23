@@ -20,6 +20,7 @@ import Tags from '@/components/Tags.vue';
 import {Component, Watch} from 'vue-property-decorator';
 import recordListModel from '@/models/recordListModels';
 import tagListModel from '@/models/tagListModel';
+import recordListModels from '@/models/recordListModels';
 
 const recordList = recordListModel.fetch();
 const tagList = tagListModel.fetch();
@@ -29,7 +30,7 @@ const tagList = tagListModel.fetch();
 })
 export default class Money extends Vue {
         tags = tagList;
-        recordList: RecordItem[]= JSON.parse( window.localStorage.getItem('recordList') || '[]')
+        recordList: RecordItem[]= recordList;//JSON.parse( window.localStorage.getItem('recordList') || '[]')
         record: RecordItem = {
           tags:[], notes:'', type:'-', amount:0
         }
@@ -44,13 +45,11 @@ export default class Money extends Vue {
           this.record.amount = parseFloat(value) 
         }
         saveRecordTtem(){
-          const record2: RecordItem = JSON.parse( JSON.stringify(this.record));
-          record2.createdAt = new Date();
-          this.recordList.push(record2);
+         recordListModels.create(this.record)
         } 
         @Watch('recordList')
         onRecordTtemListChanged(){
-          window.localStorage.setItem('recordList', JSON.stringify(this.recordList) )
+          recordListModel.save();//window.localStorage.setItem('recordList', JSON.stringify(this.recordList) )
         }
         
   
