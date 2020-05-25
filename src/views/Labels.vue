@@ -21,14 +21,15 @@
 <script>
     import Vue from 'vue';
     import {Component} from 'vue-property-decorator';
-    import store from '@/store/index2'
     @Component
     export default class Labels extends Vue {
-        tags = store.tagList;
+        //TODO
+        tags = [];//store.tagList;
         createTag(){
             const name = window.prompt('请输入标签名');
             if(name){
-               store.createTag(name);
+                //TODO
+               //store.createTag(name);
             }
         }  
     }
