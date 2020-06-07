@@ -31,9 +31,9 @@ window.onload = function(){
 }
 
 if(document.documentElement.clientWidth > 500){
-  window.alert('为保证效果更佳，请使用手机浏览');
+ // window.alert('为保证效果更佳，请使用手机浏览');
   const img = document.createElement('img');
-  img.src = '/qrcode.png';
+  img.src = '../qrcode.png';
   img.style.position = 'fixed';
   img.style.top = '50%';
   img.style.left = '50%';
