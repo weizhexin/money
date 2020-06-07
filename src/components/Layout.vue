@@ -9,7 +9,6 @@
 </template>
 
 <script>
-//import content from '*.svg'
     export default {
         props:['classPrefix'],
         name:"Layout"
@@ -21,7 +20,7 @@
         display: flex;
        
         flex-direction: column;
-        height:100vh;
+        min-height:100vh;
     }
     .content{
         overflow: auto;

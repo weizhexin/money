@@ -4,9 +4,12 @@
         <NumberPad :value="record.amount" @update:value = "onUpdateAmount" @submit="saveRecordTtem"/>
         <Tabs :data-source='recordTypeList' :value.sync="record.type" />
         <div class="notes">       
-          <FormItem field-name="备注" placeholder="请在这里输入备注" @update:value = "onUpdateNotes"/>
+          <FormItem field-name="备注" placeholder="请在这里输入备注" 
+          :value.sync="record.notes"
+         /> 
+         <!-- @update:value = "onUpdateNotes" -->
         </div>
-        <Tags />
+        <Tags @update:value="record.tags = $event"/>
     </Layout>
   </div>
 </template>
@@ -46,7 +49,11 @@ export default class Money extends Vue {
           this.record.amount = parseFloat(value) 
         }
         saveRecordTtem(){
-          this.$store.commit('createRecord',this.record)
+          this.$store.commit('createRecord',this.record);
+          if(this.$store.state.createRecordError === null){
+            window.alert('已保存')
+            this.record.notes = ''
+          }
         } 
         
   

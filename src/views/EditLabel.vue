@@ -9,7 +9,7 @@
         <FormItem :value="tag.name"
                    @update:value="update" 
                    field-name="标签名" 
-                   placeholder="清输入标签名"/>
+                   placeholder="请输入标签名"/>
         </div>
         <div class="button-wrapper">
         <button @click="remove" class='createTag'>删除标签</button>
@@ -52,6 +52,7 @@ export default class EditLabel extends Vue{
         
     }
     goBack(){
+        console.log('111');
         this.$router.back();
     }
 }
@@ -66,16 +67,11 @@ export default class EditLabel extends Vue{
         display: flex;
         align-items: center;
         justify-content: space-between;
-        >.title{
-            border: 1px solid red;
-        }
         >.leftIcon{
-           border:1px solid black;
            width:24px;
            height:24px;
         }
         >.right{
-             border:1px solid red;
            width:24px;
            height:24px;
         }
