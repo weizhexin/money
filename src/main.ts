@@ -17,23 +17,29 @@ Vue.component('Icon',Icon)
 
 
 
-
 new Vue({
   router:router,
   store,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');
 
 window.onload = function(){
   setTimeout(function(){
     window.scrollTo(0,1000)
   },0)
 }
+export default{
+  data(){
+    return {
+      publicPath: process.env.BASE_URL
+    }
+  }
+}
 
 if(document.documentElement.clientWidth > 500){
  // window.alert('为保证效果更佳，请使用手机浏览');
   const img = document.createElement('img');
-  img.src = '../qrcode.png';
+  img.src = "`${publicPath}qrcode.png`";
   img.style.position = 'fixed';
   img.style.top = '50%';
   img.style.left = '50%';
